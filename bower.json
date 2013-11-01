@@ -1,6 +1,6 @@
 {
   "name": "gmaps",
-  "version": "0.4.6",
+  "version": "0.4.6-1",
   "main": "gmaps.js",
   "dependencies": {
     "jquery": "1.10.2",
