@@ -1,3 +1,14 @@
+(function (factory) {
+if (typeof define === "function" && define.amd) {
+define([
+"jquery",
+"async",
+"async!http://maps.google.com/maps/api/js?sensor=true"
+], factory);
+} else {
+factory(jQuery);
+}
+}(function ($) {
 /*!
  * GMaps.js v0.4.6
  * http://hpneo.github.com/gmaps/
@@ -2028,3 +2039,4 @@ if (!Array.prototype.indexOf) {
       return -1;
   }
 }
+}));

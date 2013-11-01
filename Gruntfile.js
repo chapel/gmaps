@@ -70,5 +70,26 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('test', ['jshint', 'jasmine']);
-  grunt.registerTask('default', ['test', 'concat']);
+  grunt.registerTask('default', ['test', 'concat', 'amdwrap']);
+
+  grunt.registerTask('amdwrap', function () {
+    var src = grunt.file.read('gmaps.js');
+    var wrapped = [
+      '(function (factory) {',
+      'if (typeof define === "function" && define.amd) {',
+      'define([',
+      '"jquery",',
+      '"async",',
+      '"async!http://maps.google.com/maps/api/js?sensor=true"',
+      '], factory);',
+      '} else {',
+      'factory(jQuery);',
+      '}',
+      '}(function ($) {',
+      src,
+      '}));'
+    ].join('\n');
+
+    grunt.file.write('gmaps.js', wrapped);
+  });
 };
